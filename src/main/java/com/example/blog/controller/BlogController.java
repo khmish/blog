@@ -10,8 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RequestMapping("/main")
 @RestController
@@ -27,11 +26,12 @@ public class BlogController {
     {
         return "<h1>hello world</h1>";
     }
-    @GetMapping("/blog")
+    @GetMapping("/blogs")
     public ResponseEntity<List<Blog>> index()
     {
-
-        return new ResponseEntity<List<Blog>>(blogRespository.findAll(), HttpStatus.OK);
+        List<Blog> blogs= new ArrayList<Blog>();
+        blogRespository.findAll().forEach(blogs::add);
+        return new ResponseEntity<List<Blog>>(blogs, HttpStatus.OK);
     }
 
     @PostMapping("/addBlog")
@@ -40,7 +40,7 @@ public class BlogController {
         String title= body.getTitle();
         String content= body.getContent();
         User nationalID= body.getUser();
-        userRepository
+        userRepository.findById(body.getUser().getNationalID()).get();
 
 //        Blog blog= new Blog(title,content);
 //        return new Blog(title,content,nationalID);

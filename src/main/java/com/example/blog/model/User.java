@@ -1,20 +1,27 @@
 package com.example.blog.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Table(name ="User")
 @Entity
-public class User {
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "getNames",
+                procedureName = "getNames",
+                resultClasses = User.class)
+})
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int nationalID;
 
     private String name;
 
 
-    @OneToMany( cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Blog> blogs;
 
     public User() {
