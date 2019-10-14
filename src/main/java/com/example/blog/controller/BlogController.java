@@ -35,12 +35,12 @@ public class BlogController {
     }
 
     @PostMapping("/addBlog")
-    public Blog add(@RequestBody Blog body)
+    public Blog add(@RequestBody Map<String,String> body)
     {
-        String title= body.getTitle();
-        String content= body.getContent();
-        User nationalID= body.getUser();
-        userRepository
+        String title = body.get("title") ;
+        String content = body.get("content");
+        User nationalID = userRepository.findById(Integer.parseInt(body.get("nationalID"))).get();
+//        userRepository
 
 //        Blog blog= new Blog(title,content);
 //        return new Blog(title,content,nationalID);

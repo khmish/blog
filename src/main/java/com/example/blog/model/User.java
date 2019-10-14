@@ -5,6 +5,13 @@ import java.util.List;
 
 @Table(name ="User")
 @Entity
+
+@NamedStoredProcedureQuery(
+        name = "getAllUser",
+        procedureName = "getUsers",
+        resultClasses = User.class
+)
+
 public class User {
 
     @Id
@@ -14,7 +21,7 @@ public class User {
     private String name;
 
 
-    @OneToMany( cascade = CascadeType.ALL)
+    @OneToMany
     private List<Blog> blogs;
 
     public User() {

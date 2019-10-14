@@ -1,6 +1,7 @@
 package com.example.blog.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Table(name = "Blog")
 @Entity
@@ -11,7 +12,12 @@ public class Blog {
     private String title;
     private String content;
 
-    @OneToOne
+//    @OneToOne
+//    @NotNull
+//    private User user;
+
+    @ManyToOne
+    @NotNull
     private User user;
 
     public User getUser() {
