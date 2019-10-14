@@ -1,6 +1,7 @@
 package com.example.blog.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Table(name ="User")
@@ -16,6 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int nationalID;
 
     private String name;

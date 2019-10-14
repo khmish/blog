@@ -1,6 +1,7 @@
 package com.example.blog.controller;
 
 
+import com.example.blog.service.UserRepositoryCustom;
 import com.example.blog.model.User;
 import com.example.blog.service.UserRepository;
 import com.example.blog.service.UserServices;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("muser")
 public class UserController {
+
 
     @Autowired
     private UserRepository userRepository;
